@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./helpers/flags-select.scss";
+@import "./helpers/burger-menu.scss";
+@import "./custom.scss";
+
+@layer components {
+    .add-to-cart-button {
+        @apply p-2 w-full text-sm bg-gradient-to-b from-yellow-200 to-yellow-400 border border-yellow-300 rounded-sm focus:outline-none active:from-yellow-400 active:to-yellow-200;
+    }
+}
