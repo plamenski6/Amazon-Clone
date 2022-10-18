@@ -10,4 +10,8 @@
     .add-to-cart-button {
         @apply p-2 w-full text-sm bg-gradient-to-b from-yellow-200 to-yellow-400 border border-yellow-300 rounded-sm focus:outline-none active:from-yellow-400 active:to-yellow-200;
     }
+
+    .partial-button {
+        @apply w-full rounded-sm text-xs py-2 border border-[#a88734] bg-gradient-to-b from-[#f7dfa5] to-[#f0c14b] hover:from-[#F3CC6D] hover:to-[#f0c14b] active:from-[#F0C14B] active:to-[#F0C14B] active:shadow-sm active:shadow-yellow-400;
+    }
 }

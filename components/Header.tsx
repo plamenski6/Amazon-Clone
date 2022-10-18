@@ -78,22 +78,14 @@ const Header = () => {
                 {/* TOP SECTION */}
                 <div className="bg-[#131921] py-2 px-4 flex justify-between lg:justify-start">
                     <div className="flex flex-none">
-                        <div className="flex lg:pl-1">
+                        <div className="flex">
                             <Bars3Icon
-                                onClick={() =>
-                                    setBurgerOpen((prevState) => !prevState)
-                                }
-                                className="h-10 text-white pl-1 pr-2 lg:hidden"
+                                onClick={() => setBurgerOpen((prevState) => !prevState)}
+                                className="h-10 text-white lg:hidden"
                             />
                             <Link href="/">
-                                <div className="w-fit flex items-end">
-                                    <Image
-                                        src={logo}
-                                        alt="Logo"
-                                        width={100}
-                                        height={35}
-                                        className="cursor-pointer"
-                                    />
+                                <div className="w-fit flex items-end ml-2">
+                                    <Image src={logo} alt="Logo" width={100} height={35} className="cursor-pointer" />
                                 </div>
                             </Link>
                         </div>
@@ -103,10 +95,8 @@ const Header = () => {
                             className="hidden text-white cursor-pointer py-1 pl-1 pr-2 ml-2 lg:flex items-center border border-transparent hover:border-white rounded-sm"
                         >
                             <MapPinIcon className="w-5 h-6" />
-                            <div className="w-18 select-none">
-                                <p className="text-xs text-[#ccc] leading-4">
-                                    Deliver to
-                                </p>
+                            <div className="w-20 select-none">
+                                <p className="text-xs text-[#ccc] leading-4">Deliver to</p>
                                 {isLoading ? (
                                     <Oval
                                         height={10}
@@ -121,16 +111,14 @@ const Header = () => {
                                         strokeWidthSecondary={10}
                                     />
                                 ) : (
-                                    <p className="text-sm font-bold leading-4 truncate">
-                                        {country}
-                                    </p>
+                                    <p className="text-sm font-bold leading-4 truncate">{country}</p>
                                 )}
                             </div>
                         </div>
                     </div>
 
                     <div
-                        className={`hidden ml-3 lg:flex grow rounded ${
+                        className={`hidden ml-2 lg:flex grow rounded ${
                             isInputSearchFocused ? "ring-2 ring-[#FF9900]" : ""
                         }`}
                     >
@@ -155,10 +143,7 @@ const Header = () => {
                             <option className="text-black" value="All">
                                 All
                             </option>
-                            <option
-                                className="text-black"
-                                value="Arts & Crafts"
-                            >
+                            <option className="text-black" value="Arts & Crafts">
                                 Arts & Crafts
                             </option>
                             <option className="text-black" value="Automotive">
@@ -167,16 +152,10 @@ const Header = () => {
                             <option className="text-black" value="Baby">
                                 Baby
                             </option>
-                            <option
-                                className="text-black"
-                                value="Beauty & Personal Care"
-                            >
+                            <option className="text-black" value="Beauty & Personal Care">
                                 Beauty & Personal Care
                             </option>
-                            <option
-                                className="text-black"
-                                value="Boys' Fashion"
-                            >
+                            <option className="text-black" value="Boys' Fashion">
                                 Boys&apos; Fashion
                             </option>
                             <option className="text-black" value="Computers">
@@ -185,37 +164,22 @@ const Header = () => {
                             <option className="text-black" value="Deals">
                                 Deals
                             </option>
-                            <option
-                                className="text-black"
-                                value="Digital Music"
-                            >
+                            <option className="text-black" value="Digital Music">
                                 Digital Music
                             </option>
                             <option className="text-black" value="Electronics">
                                 Electronics
                             </option>
-                            <option
-                                className="text-black"
-                                value="Girls' Fashion"
-                            >
+                            <option className="text-black" value="Girls' Fashion">
                                 Girls&apos; Fashion
                             </option>
-                            <option
-                                className="text-black"
-                                value="Health & Household"
-                            >
+                            <option className="text-black" value="Health & Household">
                                 Health & Household
                             </option>
-                            <option
-                                className="text-black"
-                                value="Home & Kitchen"
-                            >
+                            <option className="text-black" value="Home & Kitchen">
                                 Home & Kitchen
                             </option>
-                            <option
-                                className="text-black"
-                                value="Industrial & Scientific"
-                            >
+                            <option className="text-black" value="Industrial & Scientific">
                                 Industrial & Scientific
                             </option>
                             <option className="text-black" value="Kindle Store">
@@ -224,19 +188,13 @@ const Header = () => {
                             <option className="text-black" value="Luggage">
                                 Luggage
                             </option>
-                            <option
-                                className="text-black"
-                                value="Men's Fashion"
-                            >
+                            <option className="text-black" value="Men's Fashion">
                                 Men&apos;s Fashion
                             </option>
                             <option className="text-black" value="Movies & TV">
                                 Movies & TV
                             </option>
-                            <option
-                                className="text-black"
-                                value="Music, CDs & Vinyl"
-                            >
+                            <option className="text-black" value="Music, CDs & Vinyl">
                                 Music, CDs & Vinyl
                             </option>
                             <option className="text-black" value="Pet Supplies">
@@ -248,16 +206,10 @@ const Header = () => {
                             <option className="text-black" value="Software">
                                 Software
                             </option>
-                            <option
-                                className="text-black"
-                                value="Sports & Outdoors"
-                            >
+                            <option className="text-black" value="Sports & Outdoors">
                                 Sports & Outdoors
                             </option>
-                            <option
-                                className="text-black"
-                                value="Tools & Home Improvement"
-                            >
+                            <option className="text-black" value="Tools & Home Improvement">
                                 Tools & Home Improvement
                             </option>
                             <option className="text-black" value="Toys & Games">
@@ -266,10 +218,7 @@ const Header = () => {
                             <option className="text-black" value="Video Games">
                                 Video Games
                             </option>
-                            <option
-                                className="text-black"
-                                value="Women's Fashion"
-                            >
+                            <option className="text-black" value="Women's Fashion">
                                 Women&apos;s Fashion
                             </option>
                         </select>
@@ -286,14 +235,10 @@ const Header = () => {
                         </button>
                     </div>
 
-                    <div className="flex-none ml-3 text-white flex items-center">
+                    <div className="flex-none lg:ml-3 text-white flex items-center">
                         <div className="hidden lg:block pt-1 px-2 cursor-pointer border border-transparent hover:border-white rounded-sm select-none">
                             <p className="text-xs leading-none">
-                                {locale === "en"
-                                    ? "English"
-                                    : locale === "es"
-                                    ? "Español"
-                                    : "Deutsch"}
+                                {locale === "en" ? "English" : locale === "es" ? "Español" : "Deutsch"}
                             </p>
                             <ReactFlagsSelect
                                 selected={selected}
@@ -309,40 +254,38 @@ const Header = () => {
                             />
                         </div>
                         <div
-                            onClick={session ? () => signOut() : () => signIn()}
-                            className="hidden lg:block ml-3 py-1 px-2 cursor-pointer border border-transparent hover:border-white rounded-sm select-none"
+                            onClick={
+                                session
+                                    ? () => signOut()
+                                    : () => router.push(`/signin?callbackUrl=${window.location.href}`)
+                            }
+                            className="hidden lg:block ml-2 py-1 px-2 cursor-pointer border border-transparent hover:border-white rounded-sm select-none"
                         >
-                            <p className="text-xs leading-4">
-                                Hello,{" "}
-                                {session ? session.user?.name : "sign in"}
-                            </p>
-                            <p className="text-sm font-bold leading-4">
-                                Account & Lists
-                            </p>
+                            <p className="text-xs leading-4">Hello, {session ? session.user?.name : "sign in"}</p>
+                            <p className="text-sm font-bold leading-4">Account & Lists</p>
                         </div>
-                        <div className="hidden lg:block ml-3 py-1 px-2 cursor-pointer border border-transparent hover:border-white rounded-sm select-none">
+                        <div className="hidden lg:block ml-2 py-1 px-2 cursor-pointer border border-transparent hover:border-white rounded-sm select-none">
                             <p className="text-xs leading-4">Returns</p>
-                            <p className="text-sm font-bold leading-4">
-                                & Orders
-                            </p>
+                            <p className="text-sm font-bold leading-4">& Orders</p>
                         </div>
-                        <div className="lg:hidden text-white p-1 flex items-center">
+                        <div
+                            onClick={
+                                session
+                                    ? () => signOut()
+                                    : () => router.push(`/signin?callbackUrl=${window.location.href}`)
+                            }
+                            className="lg:hidden text-white p-1 flex items-center"
+                        >
                             <p className="text-sm select-none">
-                                Sign in{" "}
+                                {session ? session.user?.name?.split(" ")[0] : "Sign in"}{" "}
                                 <ChevronRightIcon className="h-3 inline" />
                             </p>
                             <UserIcon className="h-8" />
                         </div>
-                        <div className="lg:ml-3 py-1 px-1 lg:px-2 flex items-center relative cursor-pointer border border-transparent lg:hover:border-white rounded-sm select-none">
+                        <div className="lg:ml-2 py-1 px-1 lg:px-2 flex items-center relative cursor-pointer border border-transparent lg:hover:border-white rounded-sm select-none">
                             <span
                                 className={`hidden lg:block rounded-full px-1 text-xs bg-[#F3A847] text-black absolute top-0
-                        ${
-                            locale === "en"
-                                ? "right-8"
-                                : locale === "es"
-                                ? "right-10"
-                                : "right-12"
-                        }
+                        ${locale === "en" ? "right-8" : locale === "es" ? "right-10" : "right-12"}
                         `}
                             >
                                 0
@@ -351,15 +294,13 @@ const Header = () => {
                                 0
                             </span>
                             <ShoppingCartIcon className="h-8" />
-                            <p className="hidden lg:block text-sm font-bold mt-2">
-                                {t.CART}
-                            </p>
+                            <p className="hidden lg:block text-sm font-bold mt-2">{t.CART}</p>
                         </div>
                     </div>
                 </div>
 
                 {/* SEARCH BAR FOR MOBILE AND TABLET VIEW */}
-                <div className="bg-[#131921] flex lg:hidden pl-6 pr-4">
+                <div className="bg-[#131921] flex lg:hidden pl-5 pr-4">
                     <input
                         type="text"
                         className="h-full outline-none pl-2 py-2 grow rounded-l rounded-r-none"
@@ -372,16 +313,13 @@ const Header = () => {
                 </div>
 
                 {/* BOTTOM SECTION */}
-                <div className="bg-[#131921] lg:bg-[#232F3E] text-white py-1 px-4 flex items-center overflow-x-auto whitespace-nowrap no-scrollbar">
+                <div className="bg-[#131921] lg:bg-[#232F3E] text-white py-1 px-3 lg:px-4 flex items-center overflow-x-auto whitespace-nowrap no-scrollbar">
                     <div className="hidden lg:flex items-center">
                         <div
-                            onClick={() =>
-                                setBurgerOpen((prevState) => !prevState)
-                            }
+                            onClick={() => setBurgerOpen((prevState) => !prevState)}
                             className="px-1 flex border border-transparent hover:border-white rounded-sm select-none items-center"
                         >
-                            <Bars3Icon className="h-6" />{" "}
-                            <p className="font-semibold text-sm">All</p>
+                            <Bars3Icon className="h-6" /> <p className="font-semibold text-sm">All</p>
                         </div>
                         <p className="px-2 border border-transparent hover:border-white rounded-sm select-none text-sm">
                             Today&apos;s Deals
@@ -400,67 +338,34 @@ const Header = () => {
                         </p>
                     </div>
                     <div className="flex items-center lg:hidden">
-                        <p className="p-2 active:text-yellow-600 select-none">
-                            Deals
-                        </p>
-                        <p className="p-2 active:text-yellow-600 select-none">
-                            Amazon Basics
-                        </p>
-                        <p className="p-2 active:text-yellow-600 select-none">
-                            Best Sellers
-                        </p>
-                        <p className="p-2 active:text-yellow-600 select-none">
-                            Livestreams
-                        </p>
-                        <p className="p-2 active:text-yellow-600 select-none">
-                            Video
-                        </p>
-                        <p className="p-2 active:text-yellow-600 select-none">
-                            New Releases
-                        </p>
-                        <p className="p-2 active:text-yellow-600 select-none">
-                            Home
-                        </p>
-                        <p className="p-2 active:text-yellow-600 select-none">
-                            Books
-                        </p>
-                        <p className="p-2 active:text-yellow-600 select-none">
-                            Gift Cards
-                        </p>
-                        <p className="p-2 active:text-yellow-600 select-none">
-                            Healt & Household
-                        </p>
-                        <p className="p-2 active:text-yellow-600 select-none">
-                            PC
-                        </p>
-                        <p className="p-2 active:text-yellow-600 select-none">
-                            Music
-                        </p>
-                        <p className="p-2 active:text-yellow-600 select-none">
-                            Lists
-                        </p>
+                        <p className="p-2 active:text-yellow-600 select-none">Deals</p>
+                        <p className="p-2 active:text-yellow-600 select-none">Amazon Basics</p>
+                        <p className="p-2 active:text-yellow-600 select-none">Best Sellers</p>
+                        <p className="p-2 active:text-yellow-600 select-none">Livestreams</p>
+                        <p className="p-2 active:text-yellow-600 select-none">Video</p>
+                        <p className="p-2 active:text-yellow-600 select-none">New Releases</p>
+                        <p className="p-2 active:text-yellow-600 select-none">Home</p>
+                        <p className="p-2 active:text-yellow-600 select-none">Books</p>
+                        <p className="p-2 active:text-yellow-600 select-none">Gift Cards</p>
+                        <p className="p-2 active:text-yellow-600 select-none">Healt & Household</p>
+                        <p className="p-2 active:text-yellow-600 select-none">PC</p>
+                        <p className="p-2 active:text-yellow-600 select-none">Music</p>
+                        <p className="p-2 active:text-yellow-600 select-none">Lists</p>
                     </div>
                 </div>
 
                 {/* DELIVERY SECTION FOR MOBILE AND TABLET VIEW */}
                 <div
                     onClick={() => setModalOpen(true)}
-                    className="bg-[#232F3E] px-5 py-2 text-white flex items-center lg:hidden"
+                    className="bg-[#232F3E] px-4 py-2 text-white flex items-center lg:hidden"
                 >
                     <MapPinIcon className="h-6" />
-                    <p className="text-sm ml-1 select-none">
-                        Deliver to {country}
-                    </p>
+                    <p className="text-sm ml-1 select-none">Deliver to {country}</p>
                 </div>
             </header>
 
             <Transition.Root show={modalOpen} as={Fragment}>
-                <Dialog
-                    as="div"
-                    className="relative z-10"
-                    initialFocus={doneButtonRef}
-                    onClose={setModalOpen}
-                >
+                <Dialog as="div" className="relative z-10" initialFocus={doneButtonRef} onClose={setModalOpen}>
                     <Transition.Child
                         as={Fragment}
                         enter="ease-out duration-300"
@@ -495,9 +400,8 @@ const Header = () => {
                                             </Dialog.Title>
                                             <div className="mt-2">
                                                 <p className="text-sm text-gray-500">
-                                                    Delivery options and
-                                                    delivery speeds may vary for
-                                                    different locations
+                                                    Delivery options and delivery speeds may vary for different
+                                                    locations
                                                 </p>
                                             </div>
                                             <select
@@ -506,11 +410,7 @@ const Header = () => {
                                                 className="outline-none rounded-md bg-[#f3f3f3] border border-[#cdcdcd] text-gray-500 p-2 drop-shadow-lg hover:bg-[#E3E6E6] mt-3 w-full"
                                             >
                                                 {countryList.map((country) => (
-                                                    <option
-                                                        className="bg-white"
-                                                        key={country}
-                                                        value={country}
-                                                    >
+                                                    <option className="bg-white" key={country} value={country}>
                                                         {country}
                                                     </option>
                                                 ))}
@@ -523,15 +423,8 @@ const Header = () => {
                                             className="bg-[#FFD814] mt-3 inline-flex w-full justify-center rounded-md border border-[#FCD200] px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-[#F7CA00] hover:border-[#F2C200] focus:outline-none sm:mt-0 sm:w-auto sm:text-sm"
                                             onClick={() => {
                                                 if (selectCountryRef.current) {
-                                                    localStorage.setItem(
-                                                        "country",
-                                                        selectCountryRef.current
-                                                            .value
-                                                    );
-                                                    setCountry(
-                                                        selectCountryRef.current
-                                                            .value
-                                                    );
+                                                    localStorage.setItem("country", selectCountryRef.current.value);
+                                                    setCountry(selectCountryRef.current.value);
                                                 }
                                                 setModalOpen(false);
                                             }}
