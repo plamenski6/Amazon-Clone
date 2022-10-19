@@ -9,4 +9,6 @@ export interface Product {
         count: number;
     };
     title: string;
+    hasPrime?: boolean;
+    quantity?: number;
 }

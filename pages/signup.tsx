@@ -10,8 +10,7 @@ import signLogo from "./../public/images/signLogo.png";
 
 const debug = debugFactory("SIGNUP_PAGE");
 
-type Props = {};
-const SignUp = (props: Props) => {
+const SignUp = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

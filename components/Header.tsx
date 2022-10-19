@@ -15,7 +15,9 @@ import ReactFlagsSelect from "react-flags-select";
 import { Oval } from "react-loader-spinner";
 import Translation from "../utils/translation";
 import { countryList } from "../utils/allCountries";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
+import type { RootState } from "../redux/store";
+import { useSelector } from "react-redux";
 
 import logo from "../public/images/logo.png";
 import Sidebar from "./Sidebar";
@@ -32,6 +34,8 @@ const Header = () => {
     const { locale } = router;
     const t = Translation();
     const { data: session } = useSession();
+
+    const items = useSelector((state: RootState) => state.cart.items);
 
     const selectCountryRef = useRef<HTMLSelectElement>(null);
     const doneButtonRef = useRef(null);
@@ -282,16 +286,19 @@ const Header = () => {
                             </p>
                             <UserIcon className="h-8" />
                         </div>
-                        <div className="lg:ml-2 py-1 px-1 lg:px-2 flex items-center relative cursor-pointer border border-transparent lg:hover:border-white rounded-sm select-none">
+                        <div
+                            onClick={() => router.push("/checkout")}
+                            className="lg:ml-2 py-1 px-1 lg:px-2 flex items-center relative cursor-pointer border border-transparent lg:hover:border-white rounded-sm select-none"
+                        >
                             <span
                                 className={`hidden lg:block rounded-full px-1 text-xs bg-[#F3A847] text-black absolute top-0
                         ${locale === "en" ? "right-8" : locale === "es" ? "right-10" : "right-12"}
                         `}
                             >
-                                0
+                                {items.length}
                             </span>
                             <span className="block lg:hidden rounded-full px-1 text-xs bg-[#F3A847] text-black absolute top-0 right-0">
-                                0
+                                {items.length}
                             </span>
                             <ShoppingCartIcon className="h-8" />
                             <p className="hidden lg:block text-sm font-bold mt-2">{t.CART}</p>
