@@ -3,7 +3,7 @@ import Head from "../components/Head";
 import PageWrapper from "../components/PageWrapper";
 import { authOptions } from "./api/auth/[...nextauth]";
 import { unstable_getServerSession } from "next-auth/next";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import type { RootState } from "../redux/store";
 import { useSelector, useDispatch } from "react-redux";
 

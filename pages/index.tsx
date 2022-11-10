@@ -9,7 +9,7 @@ import { unstable_getServerSession } from "next-auth/next";
 import ProductComponent from "../components/Product";
 
 import bannerGrid from "../public/images/bannerGrid.jpg";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import PageWrapper from "../components/PageWrapper";
 
 /* eslint-disable @next/next/no-img-element */

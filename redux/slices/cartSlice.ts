@@ -16,17 +16,16 @@ export const cartSlice = createSlice({
     reducers: {
         //Actions
         addToCart: (state, action: PayloadAction<Product>) => {
-            if (state.items.some((item) => item.id === action.payload.id)) {
-                state.items.map((item) => {
-                    if (item.id === action.payload.id) {
-                        item.quantity && action.payload.quantity && (item.quantity += action.payload.quantity);
-                    }
-                });
+            const itemInCart = state.items.find((item) => item.id === action.payload.id);
+            if (itemInCart) {
+                itemInCart.quantity++;
             } else {
                 state.items = [...state.items, action.payload];
             }
         },
-        removeFromCart: (state, action: PayloadAction<Product>) => {},
+        removeFromCart: (state, action: PayloadAction<Product>) => {
+            state.items = state.items.filter((item) => item.id !== action.payload.id);
+        },
     },
 });
 

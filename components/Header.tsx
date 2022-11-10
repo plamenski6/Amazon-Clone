@@ -1,6 +1,6 @@
 import { Fragment, useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import {
     MapPinIcon,
@@ -87,7 +87,7 @@ const Header = () => {
                                 onClick={() => setBurgerOpen((prevState) => !prevState)}
                                 className="h-10 text-white lg:hidden"
                             />
-                            <Link href="/">
+                            <Link href="/" legacyBehavior>
                                 <div className="w-fit flex items-end ml-2">
                                     <Image src={logo} alt="Logo" width={100} height={35} className="cursor-pointer" />
                                 </div>
@@ -129,20 +129,20 @@ const Header = () => {
                         <select
                             onChange={(e) => setCategory(e.target.value)}
                             className={`text-sm outline-none h-full rounded-l bg-[#f3f3f3] border border-[#cdcdcd] text-gray-500 flex-none
-                        ${
-                            category.length <= 3
-                                ? "w-10"
-                                : category.length <= 5
-                                ? "w-16"
-                                : category.length <= 10
-                                ? "w-24"
-                                : category.length <= 15
-                                ? "w-32"
-                                : category.length <= 23
-                                ? "w-44"
-                                : "w-52"
-                        } focus:ring-2 focus:ring-[#FF9900] z-5
-                        `}
+                    ${
+                        category.length <= 3
+                            ? "w-10"
+                            : category.length <= 5
+                            ? "w-16"
+                            : category.length <= 10
+                            ? "w-24"
+                            : category.length <= 15
+                            ? "w-32"
+                            : category.length <= 23
+                            ? "w-44"
+                            : "w-52"
+                    } focus:ring-2 focus:ring-[#FF9900] z-5
+                    `}
                         >
                             <option className="text-black" value="All">
                                 All
@@ -292,8 +292,8 @@ const Header = () => {
                         >
                             <span
                                 className={`hidden lg:block rounded-full px-1 text-xs bg-[#F3A847] text-black absolute top-0
-                        ${locale === "en" ? "right-8" : locale === "es" ? "right-10" : "right-12"}
-                        `}
+                    ${locale === "en" ? "right-8" : locale === "es" ? "right-10" : "right-12"}
+                    `}
                             >
                                 {items.length}
                             </span>

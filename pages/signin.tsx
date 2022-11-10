@@ -1,6 +1,6 @@
 import { getProviders, signIn, getCsrfToken } from "next-auth/react";
 import type { GetServerSideProps } from "next";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
@@ -26,7 +26,7 @@ const SignIn = ({ csrfToken, providers }: Props) => {
     return (
         <div className="flex flex-col bg-white w-full h-screen justify-start items-center">
             <div className="flex my-5">
-                <Link href="/">
+                <Link href="/" legacyBehavior>
                     <div className="flex">
                         <Image src={signLogo} alt="Sign Logo" width={105} height={32} className="cursor-pointer" />
                     </div>
@@ -103,7 +103,7 @@ const SignIn = ({ csrfToken, providers }: Props) => {
                 <p className="flex-none mx-1 text-[#767676] text-xs">New to Amazon?</p>
                 <div className="border-t border-[#e7e7e7] grow" />
             </div>
-            <Link href="/signup">
+            <Link href="/signup" legacyBehavior>
                 <button className="w-80 rounded-sm text-xs py-2 bg-[#e7e9ec] border border-[#adb1b8] hover:bg-[#DFE2E8] active:shadow-inner">
                     Create your Amazon account
                 </button>

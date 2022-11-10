@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Product } from "../types";
 import { StarIcon } from "@heroicons/react/24/solid";
 import { useDispatch } from "react-redux";
