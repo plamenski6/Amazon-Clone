@@ -4,6 +4,8 @@ import Image from "next/legacy/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
+import { authOptions } from "./api/auth/[...nextauth]";
+import { unstable_getServerSession } from "next-auth/next";
 
 import signLogo from "./../public/images/signLogo.png";
 
@@ -115,6 +117,18 @@ const SignIn = ({ csrfToken, providers }: Props) => {
 export default SignIn;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+    const { req, res, locale } = context;
+    const session = await unstable_getServerSession(req, res, authOptions);
+
+    if (session) {
+        return {
+            redirect: {
+                destination: `${locale === "en" ? "/" : `/${locale}`}`,
+                permanent: false,
+            },
+        };
+    }
+
     const csrfToken = await getCsrfToken(context);
     const providers = await getProviders();
     return {
