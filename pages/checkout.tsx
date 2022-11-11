@@ -7,9 +7,15 @@ import Image from "next/legacy/image";
 import type { RootState } from "../redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import { useSession } from "next-auth/react";
+import { loadStripe } from "@stripe/stripe-js";
+import debugFactory from "debug";
 
 import checkoutBanner from "../public/images/checkoutBanner.png";
 import CheckoutProduct from "../components/CheckoutProduct";
+
+const debug = debugFactory("CHECKOUT_PAGE");
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
 
 const Checkout = () => {
     const { data: session } = useSession();
@@ -18,6 +24,25 @@ const Checkout = () => {
     const total = useSelector((state: RootState) =>
         state.cart.items.reduce((total, item) => total + item.price * item.quantity, 0)
     );
+
+    const createCheckoutSession = async () => {
+        const stripe = await stripePromise;
+
+        try {
+            const response = await fetch("/api/checkout_session", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    items,
+                    email: session?.user?.email,
+                }),
+            });
+        } catch (err: any) {
+            debug(err.message);
+        }
+    };
 
     return (
         <>
@@ -47,6 +72,8 @@ const Checkout = () => {
                             </p>
 
                             <button
+                                role="link"
+                                onClick={createCheckoutSession}
                                 disabled={!session}
                                 className={`add-to-cart-button mt-2 ${
                                     !session

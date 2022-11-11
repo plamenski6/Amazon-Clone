@@ -36,7 +36,7 @@ const CheckoutProduct = ({ item }: Props) => {
                 </div>
                 <p className="text-xs my-2 md:line-clamp-3">{item.description}</p>
                 <p className={`${!item.hasPrime ? "mb-2" : ""}`}>
-                    $ {item.price * item.quantity} / Qty: {item.quantity}
+                    $ {(item.price * item.quantity).toFixed(2)} / Qty: {item.quantity}
                 </p>
                 {item.hasPrime && (
                     <div className="flex items-center">

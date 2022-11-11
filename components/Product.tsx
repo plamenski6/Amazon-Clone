@@ -39,7 +39,7 @@ const ProductComponent = ({ product }: Props) => {
                     ))}
             </div>
             <p className="line-clamp-2 text-xs mb-3">{product.description}</p>
-            <p>$ {product.price}</p>
+            <p>$ {product.price.toFixed(2)}</p>
             {hasPrime && (
                 <div className="flex items-center">
                     <Image src={primeImage} alt="Prime Logo" width={40} height={40} />
