@@ -12,3 +12,12 @@ export interface Product {
     hasPrime: boolean;
     quantity: number;
 }
+
+export interface Order {
+    id: string;
+    amount: number;
+    images: string[];
+    shippingAmount: number;
+    timestamp: number;
+    items: Stripe.LineItem[];
+}

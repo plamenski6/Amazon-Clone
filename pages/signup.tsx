@@ -5,6 +5,9 @@ import Image from "next/legacy/image";
 import Link from "next/link";
 import debugFactory from "debug";
 import { ExclamationTriangleIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import { GetServerSideProps } from "next";
+import { unstable_getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]";
 
 import signLogo from "./../public/images/signLogo.png";
 
@@ -122,4 +125,23 @@ const SignUp = () => {
         </div>
     );
 };
+
 export default SignUp;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    const { req, res, locale } = context;
+    const session = await unstable_getServerSession(req, res, authOptions);
+
+    if (session) {
+        return {
+            redirect: {
+                destination: `${locale === "en" ? "/" : `/${locale}`}`,
+                permanent: false,
+            },
+        };
+    }
+
+    return {
+        props: {},
+    };
+};

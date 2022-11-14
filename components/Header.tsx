@@ -268,7 +268,10 @@ const Header = () => {
                             <p className="text-xs leading-4">Hello, {session ? session.user?.name : "sign in"}</p>
                             <p className="text-sm font-bold leading-4">Account & Lists</p>
                         </div>
-                        <div className="hidden lg:block ml-2 py-1 px-2 cursor-pointer border border-transparent hover:border-white rounded-sm select-none">
+                        <div
+                            onClick={() => router.push("/orders")}
+                            className="hidden lg:block ml-2 py-1 px-2 cursor-pointer border border-transparent hover:border-white rounded-sm select-none"
+                        >
                             <p className="text-xs leading-4">Returns</p>
                             <p className="text-sm font-bold leading-4">& Orders</p>
                         </div>

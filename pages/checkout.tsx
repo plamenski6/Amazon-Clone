@@ -5,7 +5,7 @@ import { authOptions } from "./api/auth/[...nextauth]";
 import { unstable_getServerSession } from "next-auth/next";
 import Image from "next/legacy/image";
 import type { RootState } from "../redux/store";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useSession } from "next-auth/react";
 import { loadStripe } from "@stripe/stripe-js";
 import debugFactory from "debug";
@@ -15,19 +15,14 @@ import CheckoutProduct from "../components/CheckoutProduct";
 
 const debug = debugFactory("CHECKOUT_PAGE");
 
-const stripePromise = loadStripe(
-    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
-);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
 
 const Checkout = () => {
     const { data: session } = useSession();
 
     const items = useSelector((state: RootState) => state.cart.items);
     const total = useSelector((state: RootState) =>
-        state.cart.items.reduce(
-            (total, item) => total + item.price * item.quantity,
-            0
-        )
+        state.cart.items.reduce((total, item) => total + item.price * item.quantity, 0)
     );
 
     const createCheckoutSession = async () => {
@@ -59,27 +54,16 @@ const Checkout = () => {
 
     return (
         <>
-            <Head
-                title="Amazon Clone. Checkout"
-                description="Checkout description"
-                page="checkout"
-            />
+            <Head title="Amazon Clone. Checkout" description="Checkout description" page="checkout" />
 
             <PageWrapper>
                 <div className="container space-y-5 lg:flex lg:space-y-0 lg:space-x-5 mx-auto px-5">
                     <div className="w-full">
-                        <Image
-                            src={checkoutBanner}
-                            alt="Checkout Banner"
-                            width={1025}
-                            height={250}
-                        />
+                        <Image src={checkoutBanner} alt="Checkout Banner" width={1025} height={250} />
 
                         <div className="bg-white mt-3 p-6">
                             <p className="text-xl md:text-3xl border-b pb-5">
-                                {items.length > 0
-                                    ? "Shopping Cart"
-                                    : "Your Amazon Cart is empty."}
+                                {items.length > 0 ? "Shopping Cart" : "Your Amazon Cart is empty."}
                             </p>
 
                             {items.map((item) => (
@@ -91,11 +75,8 @@ const Checkout = () => {
                     {items.length > 0 && (
                         <div className="flex flex-col bg-white p-10 min-w-[260px]">
                             <p>
-                                Subtotal ({items.length}{" "}
-                                {items.length > 1 ? "items" : "item"}):{" "}
-                                <span className="font-bold">
-                                    ${total.toFixed(2)}
-                                </span>
+                                Subtotal ({items.length} {items.length > 1 ? "items" : "item"}):{" "}
+                                <span className="font-bold">${total.toFixed(2)}</span>
                             </p>
 
                             <button
@@ -108,9 +89,7 @@ const Checkout = () => {
                                         : ""
                                 }`}
                             >
-                                {!session
-                                    ? "Sign in to checkout"
-                                    : "Proceed to checkout"}
+                                {!session ? "Sign in to checkout" : "Proceed to checkout"}
                             </button>
                         </div>
                     )}
