@@ -5,6 +5,7 @@ import { ChevronRightIcon, ChevronDownIcon, GlobeAltIcon } from "@heroicons/reac
 import { UserIcon as UserIconSolid } from "@heroicons/react/24/solid";
 import { Us } from "react-flags-select";
 import { useSession, signIn, signOut } from "next-auth/react";
+import Link from "next/link";
 
 type Props = {
     burgerOpen: boolean;
@@ -79,9 +80,14 @@ const Sidebar = ({ burgerOpen, setBurgerOpen }: Props) => {
             </div>
             <div className="pt-4 pb-2 text-black border-b border-[#d5dbdb]">
                 <p className="font-bold mb-2 px-6">Help & Settings</p>
-                <p className="group text-sm flex items-center justify-between py-3 px-6 cursor-pointer select-none hover:bg-[#EAEDED]">
+                <p className="text-sm flex items-center justify-between py-3 px-6 cursor-pointer select-none hover:bg-[#EAEDED]">
                     Your Account
                 </p>
+                <Link href="/orders">
+                    <p className="text-sm flex items-center justify-between py-3 px-6 cursor-pointer select-none hover:bg-[#EAEDED]">
+                        Returns & Orders
+                    </p>
+                </Link>
                 <p className="text-sm flex items-center py-3 px-6 cursor-pointer select-none hover:bg-[#EAEDED]">
                     <GlobeAltIcon className="h-5 text-gray-400 mr-2" />{" "}
                     {locale === "en" ? "English" : locale === "es" ? "Español" : "Deutsch"}

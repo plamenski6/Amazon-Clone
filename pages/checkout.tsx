@@ -62,7 +62,7 @@ const Checkout = () => {
                         <Image src={checkoutBanner} alt="Checkout Banner" width={1025} height={250} />
 
                         <div className="bg-white mt-3 p-6">
-                            <p className="text-xl md:text-3xl border-b pb-5">
+                            <p className={`${items.length > 0 ? "border-b pb-5" : ""} text-xl md:text-3xl`}>
                                 {items.length > 0 ? "Shopping Cart" : "Your Amazon Cart is empty."}
                             </p>
 
