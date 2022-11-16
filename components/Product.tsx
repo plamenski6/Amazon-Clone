@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import Image from "next/legacy/image";
 import { Product } from "../types";
@@ -14,6 +15,7 @@ type Props = {
 const ProductComponent = ({ product }: Props) => {
     const [hasPrime, setHasPrime] = useState(false);
     const dispatch = useDispatch();
+    const router = useRouter();
 
     useEffect(() => {
         setHasPrime(Math.random() < 0.5);
@@ -25,29 +27,31 @@ const ProductComponent = ({ product }: Props) => {
     };
 
     return (
-        <div className="relative bg-white p-4 cursor-pointer z-10">
-            <p className="absolute top-1 right-2 italic text-gray-500">{product.category}</p>
-            <div className="flex justify-center my-5">
-                <Image src={product.image} alt={product.title} width={200} height={200} objectFit="contain" />
-            </div>
-            <p className="line-clamp-1 mb-2">{product.title}</p>
-            <div className="flex mb-3">
-                {Array(Math.round(product.rating.rate))
-                    .fill("a")
-                    .map((_, index) => (
-                        <StarIcon key={index} className="h-4 text-[#FF9900]" />
-                    ))}
-            </div>
-            <p className="line-clamp-2 text-xs mb-3">{product.description}</p>
-            <p>$ {product.price.toFixed(2)}</p>
-            {hasPrime && (
-                <div className="flex items-center">
-                    <Image src={primeImage} alt="Prime Logo" width={40} height={40} />
-                    <p style={{ marginBottom: 1 }} className="ml-2 text-xs text-gray-500">
-                        FREE Next-day Delivery
-                    </p>
+        <div className="relative bg-white p-4 z-10">
+            <div onClick={() => router.push(`/product/${product.id}`)} className="cursor-pointer">
+                <p className="absolute top-1 right-2 italic text-gray-500">{product.category}</p>
+                <div className="flex justify-center my-5">
+                    <Image src={product.image} alt={product.title} width={200} height={200} objectFit="contain" />
                 </div>
-            )}
+                <p className="line-clamp-1 mb-2">{product.title}</p>
+                <div className="flex mb-3">
+                    {Array(Math.round(product.rating.rate))
+                        .fill("a")
+                        .map((_, index) => (
+                            <StarIcon key={index} className="h-4 text-[#FF9900]" />
+                        ))}
+                </div>
+                <p className="line-clamp-2 text-xs mb-3">{product.description}</p>
+                <p>$ {product.price.toFixed(2)}</p>
+                {hasPrime && (
+                    <div className="flex items-center">
+                        <Image src={primeImage} alt="Prime Logo" width={40} height={40} />
+                        <p style={{ marginBottom: 1 }} className="ml-2 text-xs text-gray-500">
+                            FREE Next-day Delivery
+                        </p>
+                    </div>
+                )}
+            </div>
             <button className={`${!hasPrime ? "mt-10" : ""} add-to-cart-button`} onClick={addItemToCart}>
                 Add to Cart
             </button>

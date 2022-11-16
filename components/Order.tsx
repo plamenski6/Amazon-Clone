@@ -1,5 +1,6 @@
 import moment from "moment";
 import Image from "next/image";
+import Link from "next/link";
 import { Order } from "../types";
 
 interface Props {
@@ -33,16 +34,18 @@ const OrderComponent = ({ order }: Props) => {
             </div>
 
             <div className="grid grid-flow-row-dense grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-9 2xl:grid-cols-11 gap-5 p-5 ">
-                {order.images.map((url: string, index) => (
-                    <div key={url} className="flex items-center justify-center">
-                        <Image
-                            src={url}
-                            alt={`Image ${index}`}
-                            width={150}
-                            height={150}
-                            className="object-contain w-[150px] h-[150px]"
-                        />
-                    </div>
+                {order.fromDB.map((item) => (
+                    <Link key={item.id} href={`/product/${item.id}`}>
+                        <div className="flex items-center justify-center">
+                            <Image
+                                src={item.image}
+                                alt={`Image ${item.id}`}
+                                width={150}
+                                height={150}
+                                className="object-contain w-[150px] h-[150px]"
+                            />
+                        </div>
+                    </Link>
                 ))}
             </div>
         </div>

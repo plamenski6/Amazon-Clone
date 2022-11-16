@@ -1,3 +1,5 @@
+import Stripe from "stripe";
+
 export interface Product {
     category: string;
     description: string;
@@ -13,10 +15,15 @@ export interface Product {
     quantity: number;
 }
 
+export interface FromDB {
+    id: number;
+    image: string;
+}
+
 export interface Order {
     id: string;
     amount: number;
-    images: string[];
+    fromDB: FromDB[];
     shippingAmount: number;
     timestamp: number;
     items: Stripe.LineItem[];

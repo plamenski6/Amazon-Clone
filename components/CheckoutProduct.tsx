@@ -6,6 +6,7 @@ import { addToCart } from "../redux/slices/cartSlice";
 import { removeFromCart } from "../redux/slices/cartSlice";
 
 import primeImage from "../public/images/prime.png";
+import Link from "next/link";
 
 type Props = {
     item: Product;
@@ -15,7 +16,7 @@ const CheckoutProduct = ({ item }: Props) => {
     const dispatch = useDispatch();
 
     const increaseItemQuantity = () => {
-        dispatch(addToCart(item));
+        dispatch(addToCart({ ...item, quantity: 1 }));
     };
 
     const removeItemFromCart = () => {
@@ -24,7 +25,11 @@ const CheckoutProduct = ({ item }: Props) => {
 
     return (
         <div className="py-5 grid grid-cols-1 md:grid-cols-5 border-b last-of-type:border-0">
-            <Image src={item.image} alt={item.title} width={200} height={200} objectFit="contain" />
+            <Link href={`/product/${item.id}`}>
+                <div className="flex">
+                    <Image src={item.image} alt={item.title} width={200} height={200} objectFit="contain" />
+                </div>
+            </Link>
             <div className="col-span-3 my-2 md:my-0 md:mx-5">
                 <p className="mb-2">{item.title}</p>
                 <div className="flex mb-3">

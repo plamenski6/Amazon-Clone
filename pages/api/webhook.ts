@@ -16,31 +16,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const payload = requestBuffer.toString();
         const signature = req.headers["stripe-signature"];
 
-        let event;
+        let event: Stripe.Event;
 
         try {
             // Verify that the event came from Stripe
-            event = stripe.webhooks.constructEvent(
-                payload,
-                signature,
-                process.env.STRIPE_SIGNIN_SECRET
-            ) as Stripe.DiscriminatedEvent;
+            event = stripe.webhooks.constructEvent(payload, signature, process.env.STRIPE_SIGNIN_SECRET);
         } catch (err: any) {
             debug(err.message);
             return res.status(400).send(`Webhook error: ${err.message}`);
         }
 
         if (event.type === "checkout.session.completed") {
-            const session = event.data.object;
+            const session = event.data.object as Stripe.Checkout.Session;
             const email = session?.metadata?.email as string;
             const totalAmount = session.amount_total as number;
             const shippingAmount = session?.total_details?.amount_shipping as number;
-            const images = session?.metadata?.images as string;
+            const items = session?.metadata?.items as string;
 
             await setDoc(doc(db, "users", email, "orders", session.id), {
                 amount: totalAmount / 100,
                 amount_shipping: shippingAmount / 100,
-                images: JSON.parse(images),
+                items: JSON.parse(items),
                 timestamp: serverTimestamp(),
             })
                 .then(() => {

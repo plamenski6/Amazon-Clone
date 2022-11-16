@@ -62,7 +62,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res, locale 
                 id: doc.id,
                 amount: doc.data().amount,
                 shippingAmount: doc.data().amount_shipping,
-                images: doc.data().images,
+                fromDB: doc.data().items,
                 timestamp: moment(doc.data().timestamp.toDate()).unix(),
                 items: (
                     await stripe.checkout.sessions.listLineItems(doc.id, {
