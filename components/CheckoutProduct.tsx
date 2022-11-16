@@ -26,7 +26,7 @@ const CheckoutProduct = ({ item }: Props) => {
     return (
         <div className="py-5 grid grid-cols-1 md:grid-cols-5 border-b last-of-type:border-0">
             <Link href={`/product/${item.id}`}>
-                <div className="flex">
+                <div className="flex justify-center">
                     <Image src={item.image} alt={item.title} width={200} height={200} objectFit="contain" />
                 </div>
             </Link>
