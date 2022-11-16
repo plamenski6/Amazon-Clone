@@ -6,7 +6,6 @@ import { unstable_getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]";
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { db } from "../firebase";
-import moment from "moment";
 import OrderComponent from "../components/Order";
 import { Order } from "../types";
 
@@ -63,7 +62,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res, locale 
                 amount: doc.data().amount,
                 shippingAmount: doc.data().amount_shipping,
                 fromDB: doc.data().items,
-                timestamp: moment(doc.data().timestamp.toDate()).unix(),
+                timestamp: doc.data().timestamp.seconds, // moment(doc.data().timestamp.toDate()).unix()
                 items: (
                     await stripe.checkout.sessions.listLineItems(doc.id, {
                         limit: 100,

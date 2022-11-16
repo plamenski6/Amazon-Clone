@@ -9,6 +9,8 @@ import { authOptions } from "./api/auth/[...nextauth]";
 import { Oval } from "react-loader-spinner";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
+import { collection, getDocs, orderBy, query as firestoreQuery } from "firebase/firestore";
+import { db } from "../firebase";
 
 const Success = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -66,7 +68,7 @@ const Success = () => {
 
 export default Success;
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res, locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({ req, res, locale, query }) => {
     const session = await unstable_getServerSession(req, res, authOptions);
 
     if (!session) {
@@ -76,6 +78,21 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res, locale 
                 permanent: false,
             },
         };
+    } else {
+        const usersColRef = collection(db, "users", session?.user?.email as string, "orders");
+        const q = firestoreQuery(usersColRef, orderBy("timestamp", "desc"));
+        const userOrders = await getDocs(q);
+        const orderTimeMiliseconds = userOrders.docs[0].data().timestamp.seconds * 1000;
+        const currentTimeMiliseconds = Math.floor(new Date().getTime());
+
+        if (query.session_id !== userOrders.docs[0].id || currentTimeMiliseconds > orderTimeMiliseconds + 60 * 1000) {
+            return {
+                redirect: {
+                    destination: `${locale === "en" ? "/" : `/${locale}`}`,
+                    permanent: false,
+                },
+            };
+        }
     }
 
     return {
