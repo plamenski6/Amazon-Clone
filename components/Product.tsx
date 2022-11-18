@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { Product } from "../types";
 import { StarIcon } from "@heroicons/react/24/solid";
 import { useDispatch } from "react-redux";
@@ -31,7 +31,17 @@ const ProductComponent = ({ product }: Props) => {
             <div onClick={() => router.push(`/product/${product.id}`)} className="cursor-pointer">
                 <p className="absolute top-1 right-2 italic text-gray-500">{product.category}</p>
                 <div className="flex justify-center my-5">
-                    <Image src={product.image} alt={product.title} width={200} height={200} objectFit="contain" />
+                    <Image
+                        src={product.image}
+                        alt={product.title}
+                        width={200}
+                        height={200}
+                        style={{
+                            maxWidth: "200px",
+                            height: "200px",
+                            objectFit: "contain",
+                        }}
+                    />
                 </div>
                 <p className="line-clamp-1 mb-2">{product.title}</p>
                 <div className="flex mb-3">

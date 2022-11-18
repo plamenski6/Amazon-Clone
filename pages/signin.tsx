@@ -1,6 +1,6 @@
 import { getProviders, signIn, getCsrfToken } from "next-auth/react";
 import type { GetServerSideProps } from "next";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";

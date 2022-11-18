@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import debugFactory from "debug";
 import { ExclamationTriangleIcon, ChevronRightIcon } from "@heroicons/react/24/outline";

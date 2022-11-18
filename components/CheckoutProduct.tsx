@@ -1,5 +1,5 @@
 import { StarIcon } from "@heroicons/react/24/solid";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { Product } from "../types";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/slices/cartSlice";
@@ -27,7 +27,17 @@ const CheckoutProduct = ({ item }: Props) => {
         <div className="py-5 grid grid-cols-1 md:grid-cols-5 border-b last-of-type:border-0">
             <Link href={`/product/${item.id}`}>
                 <div className="flex justify-center">
-                    <Image src={item.image} alt={item.title} width={200} height={200} objectFit="contain" />
+                    <Image
+                        src={item.image}
+                        alt={item.title}
+                        width={200}
+                        height={200}
+                        style={{
+                            maxWidth: "200px",
+                            height: "200px",
+                            objectFit: "contain",
+                        }}
+                    />
                 </div>
             </Link>
             <div className="col-span-3 my-2 md:my-0 md:mx-5">
@@ -46,9 +56,7 @@ const CheckoutProduct = ({ item }: Props) => {
                 {item.hasPrime && (
                     <div className="flex items-center">
                         <Image src={primeImage} alt="Prime Logo" width={40} height={40} />
-                        <p style={{ marginBottom: 1 }} className="ml-2 text-xs text-gray-500">
-                            FREE Next-day Delivery
-                        </p>
+                        <p className="ml-2 text-xs text-gray-500">FREE Next-day Delivery</p>
                     </div>
                 )}
             </div>
