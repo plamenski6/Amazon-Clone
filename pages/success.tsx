@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Head from "../components/Head";
 import PageWrapper from "../components/PageWrapper";
 import { useDispatch } from "react-redux";
 import { clearCart } from "../redux/slices/cartSlice";
@@ -23,8 +22,6 @@ const Success = () => {
 
     return (
         <>
-            <Head title="Amazon Clone. Success" description="Success description" page="success" />
-
             <PageWrapper>
                 {!isLoading ? (
                     <div className="container mx-auto px-5">

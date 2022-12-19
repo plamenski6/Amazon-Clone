@@ -8,6 +8,9 @@ const nextConfig = {
     images: {
         domains: ["fakestoreapi.com"],
     },
+    experimental: {
+        appDir: true,
+    },
     swcMinify: true,
 };
 

@@ -1,4 +1,3 @@
-import Head from "../components/Head";
 import PageWrapper from "../components/PageWrapper";
 import { useSession } from "next-auth/react";
 import { GetServerSideProps } from "next";
@@ -18,8 +17,6 @@ const Orders = ({ orders }: Props) => {
 
     return (
         <div>
-            <Head title="Amazon Clone. Orders" description="Orders description" page="orders" />
-
             <PageWrapper>
                 <div className="container mx-auto px-5">
                     <div className="bg-white p-5 lg:p-10">

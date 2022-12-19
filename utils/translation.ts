@@ -1,19 +1,19 @@
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import en from "../locales/en.json";
 import es from "../locales/es.json";
 import de from "../locales/de.json";
 
 export default function Translation() {
-    const router = useRouter();
-    const { locale } = router;
+    const pathname = usePathname();
+    const locale = pathname?.slice(1, 3);
     let t;
 
-    if (locale === "en") {
-        t = en;
-    } else if (locale === "es") {
+    if (locale === "es") {
         t = es;
-    } else {
+    } else if (locale === "de") {
         t = de;
+    } else {
+        t = en;
     }
 
     return t;

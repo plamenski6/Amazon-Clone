@@ -1,5 +1,7 @@
+"use client";
+
 import { Fragment, useState, useEffect, useRef } from "react";
-import { useRouter } from "next/router";
+import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -30,9 +32,10 @@ const Header = () => {
     const [burgerOpen, setBurgerOpen] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
     const [isInputSearchFocused, setIsInputSearchFocused] = useState(false);
+    const pathname = usePathname();
     const router = useRouter();
-    const { locale } = router;
     const t = Translation();
+
     const { data: session } = useSession();
 
     const items = useSelector((state: RootState) => state.cart.items);
@@ -49,28 +52,28 @@ const Header = () => {
     }, []);
 
     useEffect(() => {
-        if (locale === "en") {
-            setSelected("US");
-        } else if (locale === "es") {
+        if (pathname?.slice(1, 3) === "es") {
             setSelected("ES");
-        } else {
+        } else if (pathname?.slice(1, 3) === "de") {
             setSelected("DE");
+        } else {
+            setSelected("US");
         }
-    }, [locale]);
+    }, [pathname]);
 
     const changeLanguage = (e: string) => {
         setSelected(e);
         let locale = "";
 
-        if (e === "US") {
-            locale = "en";
-        } else if (e === "ES") {
+        if (e === "ES") {
             locale = "es";
-        } else {
+        } else if (e === "DE") {
             locale = "de";
+        } else {
+            locale = "";
         }
 
-        router.push(router.asPath, router.asPath, { locale });
+        window.location.href = `${window.location.origin}/${locale}`;
     };
 
     return (
@@ -242,7 +245,11 @@ const Header = () => {
                     <div className="flex-none lg:ml-3 text-white flex items-center">
                         <div className="hidden lg:block pt-1 px-2 cursor-pointer border border-transparent hover:border-white rounded-sm select-none">
                             <p className="text-xs leading-none">
-                                {locale === "en" ? "English" : locale === "es" ? "Español" : "Deutsch"}
+                                {pathname?.slice(1, 3) === "es"
+                                    ? "Español"
+                                    : pathname?.slice(1, 3) === "de"
+                                    ? "Deutsch"
+                                    : "English"}
                             </p>
                             <ReactFlagsSelect
                                 selected={selected}
@@ -295,7 +302,7 @@ const Header = () => {
                         >
                             <span
                                 className={`hidden lg:block rounded-full px-1 text-xs bg-[#F3A847] text-black absolute top-0
-                ${locale === "en" ? "right-8" : locale === "es" ? "right-10" : "right-12"}
+                ${pathname?.slice(1, 3) === "es" ? "right-10" : pathname?.slice(1, 3) === "de" ? "right-12" : "right-8"}
                 `}
                             >
                                 {items.length}

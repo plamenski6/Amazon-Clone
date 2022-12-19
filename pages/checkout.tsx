@@ -1,5 +1,4 @@
 import { GetServerSideProps } from "next";
-import Head from "../components/Head";
 import PageWrapper from "../components/PageWrapper";
 import { authOptions } from "./api/auth/[...nextauth]";
 import { unstable_getServerSession } from "next-auth/next";
@@ -54,8 +53,6 @@ const Checkout = () => {
 
     return (
         <>
-            <Head title="Amazon Clone. Checkout" description="Checkout description" page="checkout" />
-
             <PageWrapper>
                 <div className="container space-y-5 lg:flex lg:space-y-0 lg:space-x-5 mx-auto px-5">
                     <div className="w-full">

@@ -1,51 +1,51 @@
-import { useRouter } from "next/router";
-import Head from "next/head";
+// import { useRouter } from "next/router";
+// import Head from "next/head";
 
-interface Props {
-    title: string;
-    description: string;
-    page: string;
-}
+// interface Props {
+//     title: string;
+//     description: string;
+//     page: string;
+// }
 
-const Meta = ({ title, description, page }: Props) => {
-    const router = useRouter();
-    const { locale } = router;
+const DefaultTags = (/*{ title, description, page }: Props*/) => {
+    // const router = useRouter();
+    // const { locale } = router;
 
-    let url_en = "";
-    let url_es = "";
-    let url_de = "";
-    let content_url = "";
-    let url_home_en = "";
-    let url_home_es = "";
-    let url_home_de = "";
-    if (typeof window !== "undefined") {
-        content_url = window.location.href;
-        url_home_en = `${window.location.origin}/en`;
-        url_home_es = `${window.location.origin}/es`;
-        url_home_de = `${window.location.origin}/de`;
+    // let url_en = "";
+    // let url_es = "";
+    // let url_de = "";
+    // let content_url = "";
+    // let url_home_en = "";
+    // let url_home_es = "";
+    // let url_home_de = "";
+    // if (typeof window !== "undefined") {
+    //     content_url = window.location.href;
+    //     url_home_en = `${window.location.origin}/en`;
+    //     url_home_es = `${window.location.origin}/es`;
+    //     url_home_de = `${window.location.origin}/de`;
 
-        if (window.location.pathname.substring(3, 4) === "/") {
-            url_en = `${window.location.origin}/en${window.location.pathname.slice(3)}`;
-            url_es = `${window.location.origin}/es${window.location.pathname.slice(3)}`;
-            url_de = `${window.location.origin}/de${window.location.pathname.slice(3)}`;
-        } else {
-            url_en = `${window.location.origin}/en${window.location.pathname}`;
-            url_es = `${window.location.origin}/es${window.location.pathname}`;
-            url_de = `${window.location.origin}/de${window.location.pathname}`;
-        }
-    }
+    //     if (window.location.pathname.substring(3, 4) === "/") {
+    //         url_en = `${window.location.origin}/en${window.location.pathname.slice(3)}`;
+    //         url_es = `${window.location.origin}/es${window.location.pathname.slice(3)}`;
+    //         url_de = `${window.location.origin}/de${window.location.pathname.slice(3)}`;
+    //     } else {
+    //         url_en = `${window.location.origin}/en${window.location.pathname}`;
+    //         url_es = `${window.location.origin}/es${window.location.pathname}`;
+    //         url_de = `${window.location.origin}/de${window.location.pathname}`;
+    //     }
+    // }
 
     return (
-        <Head>
+        <>
             <meta name="viewport" content="width=device-width,initial-scale=1" />
-            <title>{title}</title>
+            {/* <title>{title}</title>
             <meta property="og:title" content={title} />
             <meta name="description" content={description} />
-            <meta property="og:description" content={description} />
-            <meta property="og:image" content="/assets/thumbnail.jpg" />
-            <meta property="og:locale" content={locale} />
+            <meta property="og:description" content={description} /> */}
+            <meta property="og:image" content="/assets/apple-touch-startup-image-2436x1125.png" />
+            {/* <meta property="og:locale" content={locale} /> */}
             <meta name="twitter:card" content="summary" />
-            <meta property="og:url" content={content_url} />
+            {/* <meta property="og:url" content={content_url} />
             <link rel="canonical" href={content_url} />
             {page === "home" ? (
                 <>
@@ -63,7 +63,7 @@ const Meta = ({ title, description, page }: Props) => {
                     <link rel="alternate" href={url_es} hrefLang="es" />
                     <link rel="alternate" href={url_de} hrefLang="de" />
                 </>
-            )}
+            )} */}
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
             <link rel="shortcut icon" href="/assets/favicon.ico" />
@@ -204,8 +204,8 @@ const Meta = ({ title, description, page }: Props) => {
             <meta name="msapplication-TileImage" content="/assets/mstile-144x144.png" />
             <meta name="msapplication-config" content="/assets/browserconfig.xml" />
             <link rel="yandex-tableau-widget" href="/assets/yandex-browser-manifest.json" />
-        </Head>
+        </>
     );
 };
 
-export default Meta;
+export default DefaultTags;

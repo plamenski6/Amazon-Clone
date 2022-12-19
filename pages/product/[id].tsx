@@ -3,7 +3,6 @@ import { StarIcon } from "@heroicons/react/24/solid";
 import debugFactory from "debug";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
-import Head from "../../components/Head";
 import PageWrapper from "../../components/PageWrapper";
 import { Product } from "../../types";
 import { useDispatch } from "react-redux";
@@ -33,12 +32,6 @@ const ProductPage = ({ product }: Props) => {
 
     return (
         <>
-            <Head
-                title={`Amazon Clone. Product #${product.id}`}
-                description={`Product #${product.id} description`}
-                page={`product-${product.id}`}
-            />
-
             <PageWrapper>
                 <div className="container mx-auto px-5">
                     <div className="bg-white p-5 lg:p-10">

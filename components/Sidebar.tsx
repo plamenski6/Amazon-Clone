@@ -1,5 +1,5 @@
 import React from "react";
-import { useRouter } from "next/router";
+import { useRouter, usePathname } from "next/navigation";
 import { slide as Menu } from "react-burger-menu";
 import { ChevronRightIcon, ChevronDownIcon, GlobeAltIcon } from "@heroicons/react/24/outline";
 import { UserIcon as UserIconSolid } from "@heroicons/react/24/solid";
@@ -14,7 +14,7 @@ type Props = {
 
 const Sidebar = ({ burgerOpen, setBurgerOpen }: Props) => {
     const router = useRouter();
-    const { locale } = router;
+    const pathname = usePathname();
     const { data: session } = useSession();
 
     return (
@@ -89,8 +89,12 @@ const Sidebar = ({ burgerOpen, setBurgerOpen }: Props) => {
                     </p>
                 </Link>
                 <p className="text-sm flex items-center py-3 px-6 cursor-pointer select-none hover:bg-[#EAEDED]">
-                    <GlobeAltIcon className="h-5 text-gray-400 mr-2" />{" "}
-                    {locale === "en" ? "English" : locale === "es" ? "Español" : "Deutsch"}
+                    <GlobeAltIcon className="h-5 text-gray-400 mr-2" />
+                    {pathname?.slice(1, 3) === "es"
+                        ? "Español"
+                        : pathname?.slice(1, 3) === "de"
+                        ? "Deutsch"
+                        : "English"}
                 </p>
                 <p className="text-sm flex items-center py-3 px-6 cursor-pointer select-none hover:bg-[#EAEDED]">
                     <Us className="w-5 mr-2" /> United States
