@@ -1,24 +1,53 @@
+"use client";
+
 import { useState } from "react";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import debugFactory from "debug";
 import { ExclamationTriangleIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-import { GetServerSideProps } from "next";
-import { unstable_getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]";
+import { redirect, usePathname, useRouter } from "next/navigation";
+import { Oval } from "react-loader-spinner";
+import debugFactory from "debug";
 
-import signLogo from "./../public/images/signLogo.png";
+import signLogo from "../../public/images/signLogo.png";
 
 const debug = debugFactory("SIGNUP_PAGE");
 
 const SignUp = () => {
+    const { data: session, status } = useSession();
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
+    const pathname = usePathname();
     const router = useRouter();
+
+    if (session) {
+        if (pathname?.substring(3, 4) === "/") {
+            redirect(`/${pathname?.slice(1, 3)}`);
+        } else {
+            redirect("/");
+        }
+    }
+
+    if (status === "loading") {
+        return (
+            <div className="flex h-screen justify-center items-center">
+                <Oval
+                    height={80}
+                    width={80}
+                    color="#131921"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={true}
+                    ariaLabel="oval-loading"
+                    secondaryColor="#131921"
+                    strokeWidth={2}
+                    strokeWidthSecondary={2}
+                />
+            </div>
+        );
+    }
 
     const submitSignUpForm = async (e: any) => {
         e.preventDefault();
@@ -127,21 +156,3 @@ const SignUp = () => {
 };
 
 export default SignUp;
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-    const { req, res, locale } = context;
-    const session = await unstable_getServerSession(req, res, authOptions);
-
-    if (session) {
-        return {
-            redirect: {
-                destination: `${locale === "en" ? "/" : `/${locale}`}`,
-                permanent: false,
-            },
-        };
-    }
-
-    return {
-        props: {},
-    };
-};
