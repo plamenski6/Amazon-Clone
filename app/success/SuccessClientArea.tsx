@@ -1,17 +1,14 @@
-import { useEffect, useState } from "react";
-import PageWrapper from "../components/PageWrapper";
-import { useDispatch } from "react-redux";
-import { clearCart } from "../redux/slices/cartSlice";
-import { GetServerSideProps } from "next";
-import { unstable_getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]";
-import { Oval } from "react-loader-spinner";
+"use client";
+
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
-import { collection, getDocs, orderBy, query as firestoreQuery } from "firebase/firestore";
-import { db } from "../firebase";
+import { useEffect, useState } from "react";
+import { Oval } from "react-loader-spinner";
+import { useDispatch } from "react-redux";
+import PageWrapper from "../../components/PageWrapper";
+import { clearCart } from "../../redux/slices/cartSlice";
 
-const Success = () => {
+const SuccessClientArea = () => {
     const [isLoading, setIsLoading] = useState(true);
     const dispatch = useDispatch();
 
@@ -63,38 +60,4 @@ const Success = () => {
     );
 };
 
-export default Success;
-
-export const getServerSideProps: GetServerSideProps = async ({ req, res, locale, query }) => {
-    const session = await unstable_getServerSession(req, res, authOptions);
-
-    if (!session) {
-        return {
-            redirect: {
-                destination: `${locale === "en" ? "/" : `/${locale}`}`,
-                permanent: false,
-            },
-        };
-    } else {
-        const usersColRef = collection(db, "users", session?.user?.email as string, "orders");
-        const q = firestoreQuery(usersColRef, orderBy("timestamp", "desc"));
-        const userOrders = await getDocs(q);
-        const orderTimeMiliseconds = userOrders.docs[0].data().timestamp.seconds * 1000;
-        const currentTimeMiliseconds = Math.floor(new Date().getTime());
-
-        if (query.session_id !== userOrders.docs[0].id || currentTimeMiliseconds > orderTimeMiliseconds + 60 * 1000) {
-            return {
-                redirect: {
-                    destination: `${locale === "en" ? "/" : `/${locale}`}`,
-                    permanent: false,
-                },
-            };
-        }
-    }
-
-    return {
-        props: {
-            session,
-        },
-    };
-};
+export default SuccessClientArea;

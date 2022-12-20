@@ -90,7 +90,7 @@ const Header = () => {
                                 onClick={() => setBurgerOpen((prevState) => !prevState)}
                                 className="h-10 text-white lg:hidden"
                             />
-                            <Link href="/">
+                            <Link href="/" className="flex">
                                 <div className="w-fit flex items-end ml-2">
                                     <Image src={logo} alt="Logo" width={100} height={35} className="cursor-pointer" />
                                 </div>

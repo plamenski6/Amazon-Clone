@@ -1,4 +1,4 @@
-import NextAuth, { RequestInternal, User } from "next-auth";
+import NextAuth, { User } from "next-auth";
 import type { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -22,11 +22,8 @@ export const authOptions: NextAuthOptions = {
                 email: { label: "Email", type: "email" },
                 password: { label: "Password", type: "password" },
             },
-            async authorize(
-                credentials: Record<"email" | "password", string> | undefined,
-                req: Pick<RequestInternal, "body" | "query" | "headers" | "method">
-            ) {
-                const { email, password } = req.body as any;
+            async authorize(credentials: Record<"email" | "password", string> | undefined, _req) {
+                const { email, password } = credentials as { email: string; password: string };
                 try {
                     const res = await signInWithEmailAndPassword(auth, email, password);
                     const user = res.user;
