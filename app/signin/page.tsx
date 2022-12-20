@@ -49,7 +49,7 @@ const SignIn = () => {
             {!isLoading ? (
                 <div className="flex flex-col bg-white w-full h-screen justify-start items-center">
                     <div className="flex my-5">
-                        <Link href="/" legacyBehavior>
+                        <Link href="/">
                             <div className="flex">
                                 <Image
                                     src={signLogo}
@@ -134,7 +134,7 @@ const SignIn = () => {
                         <p className="flex-none mx-1 text-[#767676] text-xs">New to Amazon?</p>
                         <div className="border-t border-[#e7e7e7] grow" />
                     </div>
-                    <Link href="/signup" legacyBehavior>
+                    <Link href="/signup">
                         <button className="w-80 rounded-sm text-xs py-2 bg-[#e7e9ec] border border-[#adb1b8] hover:bg-[#DFE2E8] active:shadow-inner">
                             Create your Amazon account
                         </button>

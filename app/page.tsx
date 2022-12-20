@@ -14,11 +14,12 @@ const getData = async () => {
         throw new Error("Failed to fetch data");
     }
 
-    return res.json();
+    const products: Product[] = await res.json();
+    return products;
 };
 
 const Home = async () => {
-    const products: Product[] = await getData();
+    const products = await getData();
 
     return (
         <PageWrapper>

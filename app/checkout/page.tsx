@@ -1,16 +1,15 @@
-import { GetServerSideProps } from "next";
-import PageWrapper from "../components/PageWrapper";
-import { authOptions } from "./api/auth/[...nextauth]";
-import { unstable_getServerSession } from "next-auth/next";
+"use client";
+
+import PageWrapper from "../../components/PageWrapper";
 import Image from "next/image";
-import type { RootState } from "../redux/store";
+import type { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
 import { useSession } from "next-auth/react";
 import { loadStripe } from "@stripe/stripe-js";
 import debugFactory from "debug";
 
-import checkoutBanner from "../public/images/checkoutBanner.png";
-import CheckoutProduct from "../components/CheckoutProduct";
+import checkoutBanner from "../../public/images/checkoutBanner.png";
+import CheckoutProduct from "../../components/CheckoutProduct";
 
 const debug = debugFactory("CHECKOUT_PAGE");
 
@@ -97,13 +96,3 @@ const Checkout = () => {
 };
 
 export default Checkout;
-
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-    const session = await unstable_getServerSession(req, res, authOptions);
-
-    return {
-        props: {
-            session,
-        },
-    };
-};

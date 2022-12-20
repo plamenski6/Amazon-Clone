@@ -78,7 +78,7 @@ const SignUp = () => {
     return (
         <div className="flex flex-col bg-white w-full h-screen justify-start items-center">
             <div className="flex my-5">
-                <Link href="/" legacyBehavior>
+                <Link href="/">
                     <div className="flex">
                         <Image src={signLogo} alt="Sign Logo" width={105} height={32} className="cursor-pointer" />
                     </div>
